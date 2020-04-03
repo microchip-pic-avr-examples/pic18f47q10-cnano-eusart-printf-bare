@@ -23,6 +23,8 @@
 
 /* Disable Watch Dog Timer */
 #pragma config WDTE = OFF
+/* Low voltage programming enabled , RE3 pin is MCLR */
+#pragma config LVP = ON
 
 #include <xc.h>
 #include <stdint.h>
@@ -30,7 +32,6 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 1000000UL
-#define PPS_CONFIG_RD0_EUSART2_TX 0x0B
 #define START_DATA_STREAM_PROTOCOL 0x03
 #define STOP_DATA_STREAM_PROTOCOL 0xFC
 
@@ -44,40 +45,38 @@ void putch(char txData);
 static void CLK_init(void)
 {   
     /* Set HFINTOSC as new oscillator source */
-//    OSCCON1 = _OSCCON1_NOSC1_MASK | _OSCCON1_NOSC2_MASK;
     OSCCON1bits.NOSC = 0b011;
+    
     /* Set HFFRQ to 1 MHz */
-//    OSCFRQ = ~_OSCFREQ_HFFRQ_MASK;
     OSCFRQbits.HFFRQ = 0;
 }
 
 static void EUSART2_init(void)
 {
-    /* Transmit Enable and High Baud Rate Select */
-    //TX2STA = _TX2STA_TXEN_MASK | _TX2STA_BRGH_MASK;
+    /* Transmit Enable */
     TX2STAbits.TXEN = 1;
+    /* High Baud Rate Select */
     TX2STAbits.BRGH = 1;
-    /* 16-bit Baud Rate Generator is used */
-    //BAUD2CON = _BAUD2CON_BRG16_MASK;
-    BAUD2CONbits.BRG16 = 1;
-    /*  */
-//    SP2BRGL = 0x19;
-    SP2BRGLbits.SP2BRGL = 0x19;
     
-    /* ?Serial Port Enable */
-    //RC2STA = _RC2STA_SPEN_MASK;
+    /* 16-bit Baud Rate Generator is used */
+    BAUD2CONbits.BRG16 = 1;
+    
+    /* Baud rate 9600 */
+    SP2BRGL = 0x19;
+    
+    /* Serial Port Enable */
     RC2STAbits.SPEN = 1;
 }
 
 static void PPS_init(void) 
 {
+    /* RD0 is TX2 */
     RD0PPS = 0x0B; 
 }
 
 static void PORT_init(void)
 {
     /* Configure RD0 as output. */
-//    TRISD &= ~(_TRISD_TRISD0_MASK);
     TRISDbits.TRISD0 = 0;
 }
 
