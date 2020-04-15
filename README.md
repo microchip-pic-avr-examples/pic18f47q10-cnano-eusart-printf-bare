@@ -1,4 +1,4 @@
-<a href="https://www.microchip.com" rel="nofollow"><img src="images/MicrochipLogo.png" alt="MCHP" style="max-width:40%;"/></a>
+<a href="https://www.microchip.com" rel="nofollow"><img src="./images/MicrochipLogo.png" alt="Microchip Logo" width="300" /></a>
 
 # PIC18F47Q10 EUSART Send Formatted Messages Using `printf`
 
@@ -39,7 +39,7 @@ The following configurations must be made for this project:
 
 Run the code and configure the Data Visualizer as described in the Technical Brief document.
 
-<img src="images/demo.png" alt="Demo in MPLABX Data Visualizer"/>
+![Demo in MPLABX Data Visualizer](./images/demo.png)
 
 ## Summary
 
