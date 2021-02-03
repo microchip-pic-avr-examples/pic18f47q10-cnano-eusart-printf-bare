@@ -4,18 +4,18 @@
     "content": {
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.pic18f47q10-cnano-eusart-printf-bare",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "displayName": "EUSART Send Formatted Messages Using printf",
         "projectName": "pic18f47q10-cnano-eusart-printf-bare",
         "shortDescription": "This example shows how to enhance the Hello World use case with the ability to use printf function to send messages over EUSART. In this example, messages are Data Stream protocol frames, MPLAB Data Visualizer can be used to display them as plots.",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=5.30"
+            "semverRange": ">=5.30.0"
         },
         "compiler": [
             {
                 "name": "XC8",
-                "semverRange": "^2.10"
+                "semverRange": "^2.10.0"
             }
         ],
         "dfp": {
@@ -38,7 +38,6 @@
         },
         "author": "Microchip",
         "subcategories": [
-            "Peripherals",
             [
                 "Peripherals",
                 "EUSART"
